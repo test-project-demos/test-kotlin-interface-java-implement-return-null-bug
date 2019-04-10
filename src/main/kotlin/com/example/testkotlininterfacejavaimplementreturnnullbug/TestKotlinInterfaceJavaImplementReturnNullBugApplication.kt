@@ -1,11 +1,24 @@
 package com.example.testkotlininterfacejavaimplementreturnnullbug
 
+import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class TestKotlinInterfaceJavaImplementReturnNullBugApplication
+class TestKotlinInterfaceJavaImplementReturnNullBugApplication : CommandLineRunner {
+    private val logger = LoggerFactory.getLogger(TestKotlinInterfaceJavaImplementReturnNullBugApplication::class.java)
+
+    @Autowired
+    private lateinit var kotlinInterface: KotlinInterface
+
+    override fun run(vararg args: String?) {
+        val str: String = kotlinInterface.test()
+        str ?: throw NullPointerException("kotlinInterface.test() is null!!!")
+    }
+}
 
 fun main(args: Array<String>) {
-	runApplication<TestKotlinInterfaceJavaImplementReturnNullBugApplication>(*args)
+    runApplication<TestKotlinInterfaceJavaImplementReturnNullBugApplication>(*args)
 }
