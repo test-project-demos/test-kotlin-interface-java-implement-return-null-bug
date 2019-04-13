@@ -14,8 +14,10 @@ class TestKotlinInterfaceJavaImplementReturnNullBugApplication : CommandLineRunn
     private lateinit var kotlinInterface: KotlinInterface
 
     override fun run(vararg args: String?) {
-        val str: String = kotlinInterface.test()
-        str ?: throw NullPointerException("kotlinInterface.test() is null!!!")
+        val str = kotlinInterface.test()
+//        str ?: throw NullPointerException("kotlinInterface.test() is null!!!")
+
+        val test = KotlinInterfaceImplByJava().test()
     }
 }
 
